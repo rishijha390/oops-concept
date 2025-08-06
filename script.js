@@ -50,10 +50,31 @@
 
 // callback function
 
-function kuchderbadchalunga(fnc){
-    setTimeout(fnc , Math.floor(Math.random()*20)*1000);
-}
+// function kuchderbadchalunga(fnc){
+//     setTimeout(fnc , Math.floor(Math.random()*20)*1000);
+// }
 
-kuchderbadchalunga(function () {
-    console.log("I am a callback function");
-})
+// kuchderbadchalunga(function () {
+//     console.log("I am a callback function");
+// })
+
+
+//callback hell
+function profilelekaraao(username , cb){
+    setTimeout(()=>{
+        console.log(`Profile of ${username} is ready`);
+        cb({ _id: username });
+    },2000);
+}
+function datalekeaao(id , cb){
+    console.log("fetching data...");
+    setTimeout(() => {
+        cb({ _id: id, posts: [1,2,3,4,5,6] });
+    }, 3000);
+}
+profilelekaraao("Rishi",function(data){
+    console.log(data);
+datalekeaao(data._id,function(posts) {
+    console.log(posts);
+});
+});
